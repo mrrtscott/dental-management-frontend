@@ -1,0 +1,34 @@
+<div class="col-md-10">
+    <div class="form-group-row"></div>
+<div class="form-group-row pb-3">
+    <div class="col-sm-6">
+        <input type="text" [(ngModel)]="searchValue" class="form-control" id="search" placeholder="Search"/>
+    </div>
+</div>
+<table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Patient Number</th>
+        <th scope="col">First</th>
+        <th scope="col">Middle Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Date of Birth</th>
+        <th scope="col">Sex</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor ="let tempPatient of patients | patientsSearchFilter:searchValue">
+        <th scope="row"><i class="fa fa-user" aria-hidden="true"></i> {{ tempPatient.id}}</th>
+        <td>{{ tempPatient.firstName}}</td>
+        <td>{{ tempPatient.middleName}}</td>
+        <td>{{ tempPatient.lastName}}</td>
+        <td>{{ tempPatient.dateOfBirth}}</td>
+        <td>{{ tempPatient.sex}}</td>
+        <td><button type="button" class="btn btn-primary" routerLink='/patient/{{tempPatient.id}}'>View</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
