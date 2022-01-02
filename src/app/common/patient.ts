@@ -13,6 +13,7 @@ export class Patient {
     phone: any;
     appointment: any;
     id: number;
+    insurance: any;
     patientStatus: string;
 
 }

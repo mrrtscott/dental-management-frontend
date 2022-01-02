@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Address } from 'src/app/common/address';
 import { Appointment } from 'src/app/common/appointment';
 import { EmergencyContact } from 'src/app/common/emergency-contact';
+import { Insurance } from 'src/app/common/insurance';
 import { Patient } from 'src/app/common/patient';
 import { Phone } from 'src/app/common/phone';
 import { PatientService } from 'src/app/services/patient.service';
@@ -19,6 +20,7 @@ export class PatientProfileComponent implements OnInit {
   patientAddress: Address[];
   patientEmergencyContact: EmergencyContact[];
   patientAppointment: Appointment[];
+  patientInsurance: Insurance[];
 
   
 
@@ -30,6 +32,7 @@ export class PatientProfileComponent implements OnInit {
     this.patientPhones = [];
     this.patientEmergencyContact = [];
     this.patientAppointment = [];
+    this.patientInsurance = [];
     this.route.paramMap.subscribe(() =>{
       this.handlePatientDetails();
 
@@ -65,7 +68,12 @@ export class PatientProfileComponent implements OnInit {
           return  DateB.valueOf() - DateA.valueOf()
 
         });
-        console.log(this.patientAppointment) 
+        console.log(this.patientAppointment)
+
+        this.patientInsurance = this.patient[0].insurance
+        console.log(this.patientInsurance)
+        
+        
 
       }
     )
