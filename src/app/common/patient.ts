@@ -4,7 +4,7 @@ export class Patient {
     firstName: string;
     middleName: string;
     lastName: string;
-    dateOfBirth: string;
+    dateOfBirth: Date;
     sex: string;
     trn: string;
     maritalStatus: string;
@@ -14,6 +14,8 @@ export class Patient {
     appointment: any;
     id: number;
     insurance: any;
+    medicalRecord: any;
+    initialClinicalExamination: any;
     patientStatus: string;
 
 }

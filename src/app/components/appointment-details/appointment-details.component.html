@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="row">
+            <div class="col-md-9">
+                <div class="wrapper wrapper-content animated fadeInUp">
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="m-b-md">
+                                        <button type="button" class="btn btn-primary pull-right"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+                                        <!-- <a href="#" class="btn btn-white btn-xs pull-right">Edit project</a> -->
+                                        <h2>Name - Appointment</h2>
+                                    </div>
+                                    <dl class="dl-horizontal">
+                                        <dt>Status:</dt> <dd><span><i [ngClass]="{'fa fa-check text-success' : (appointment[0]?.appointmentStatus == 'CONFIRMED'), 'fa fa-bookmark text-primary' : (appointment[0]?.appointmentStatus == 'BOOKED')}"></i> {{appointment[0]?.appointmentStatus}}</span></dd>
+                                        
+                                    </dl>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <dl class="dl-horizontal">
+    
+                                        <dt>Created by:</dt> <dd>Alex Smith</dd>
+                                        <dt>Messages:</dt> <dd>  162</dd>
+                                        <dt>Client:</dt> <dd><a href="#" class="text-navy"> Zender Company</a> </dd>
+                                        <dt>Version:</dt> <dd>     v1.4.2 </dd>
+                                    </dl>
+                                </div>
+                                <div class="col-lg-7" id="cluster_info">
+                                    <dl class="dl-horizontal">
+    
+                                        <dt>Confirmed Date:</dt> <dd>{{appointment[0]?.setAppointmentDate}}</dd>
+                                        <dt>Requested Date:</dt> <dd>{{appointment[0]?.requestedAppointmentDate}}</dd>
+                                        <!-- <dt>Participants:</dt>
+                                        <dd class="project-people">
+                                        <a href=""><img alt="image" class="img-circle" src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
+                                        <a href=""><img alt="image" class="img-circle" src="https://bootdey.com/img/Content/avatar/avatar2.png"></a>
+                                        <a href=""><img alt="image" class="img-circle" src="https://bootdey.com/img/Content/avatar/avatar3.png"></a>
+                                        <a href=""><img alt="image" class="img-circle" src="https://bootdey.com/img/Content/avatar/avatar4.png"></a>
+                                        <a href=""><img alt="image" class="img-circle" src="https://bootdey.com/img/Content/avatar/avatar5.png"></a>
+                                        </dd> -->
+                                    </dl>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <dl class="dl-horizontal">
+                                        <dt>Completed:</dt>
+                                        <dd>
+                                            <div class="progress progress-striped active m-b-sm">
+                                                <div style="width: 90%;" class="progress-bar"></div>
+                                            </div>
+                                            <small>Project completed in <strong>60%</strong>. Remaining close the project, sign a contract and invoice.</small>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="wrapper wrapper-content project-manager">
+                    <h4>Appointment Notes</h4>
+                    <p class="small">
+                        {{appointment[0]?.notes}}
+                    </p>
+                    
+                    <h5>Attachments</h5>
+                        <div *ngIf = "appointment[0]?.invoice.length > 0"><button type="button" class="btn btn-primary"><i class="fa fa-file-text" aria-hidden="false"></i> Invoice</button></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>

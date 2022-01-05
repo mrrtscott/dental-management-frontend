@@ -15,8 +15,12 @@ import { PatientsSearchFilterPipe } from './pipes/patients-search-filter.pipe';
 import { Routes, RouterModule } from '@angular/router';
 import { PatientProfileComponent } from './components/patient-profile/patient-profile.component';
 import { PatientDetailsComponent } from './components/patient-details/patient-details.component';
+import { AppointmentDetailsComponent } from './components/appointment-details/appointment-details.component';
+import { InvoiceDetailsComponent } from './components/invoice-details/invoice-details.component';
 
 const routes: Routes = [
+  {path: 'patient/:patientId/:appointmentId/:invoiceId', component : InvoiceDetailsComponent},
+  {path: 'patient/:patientId/:appointmentId', component: AppointmentDetailsComponent},
   {path: 'patient/:id', component: PatientProfileComponent},
   {path: 'patients', component: PatientsComponent},
   {path: 'dashboard', component: DashboardComponent},
@@ -36,7 +40,9 @@ const routes: Routes = [
     FooterComponent,
     PatientsSearchFilterPipe,
     PatientProfileComponent,
-    PatientDetailsComponent
+    PatientDetailsComponent,
+    AppointmentDetailsComponent,
+    InvoiceDetailsComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
