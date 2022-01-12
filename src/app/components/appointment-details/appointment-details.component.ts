@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Appointment } from 'src/app/common/appointment';
+import { Patient } from 'src/app/common/patient';
 import { AppointmentDetailsService } from 'src/app/services/appointment-details.service';
 
 @Component({
@@ -11,6 +12,8 @@ import { AppointmentDetailsService } from 'src/app/services/appointment-details.
 export class AppointmentDetailsComponent implements OnInit {
 
   appointment: Appointment[];
+  patient:Patient[];
+  thePatientId: number;
 
   constructor(private appointmentService: AppointmentDetailsService ,private route: ActivatedRoute) { }
 
@@ -25,12 +28,14 @@ export class AppointmentDetailsComponent implements OnInit {
 
   handleAppointmentDetails() {
     const theAppointmentId: number =+ this.route.snapshot.paramMap.get("appointmentId")
+    this.thePatientId =+ this.route.snapshot.paramMap.get("patientId");
     this.appointmentService.getAppointment(theAppointmentId).subscribe(
       data => {
         this.appointment = data;
         console.log(data)
       }
     )
+    
     
   }
 

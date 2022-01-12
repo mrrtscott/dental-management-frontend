@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -17,15 +17,27 @@ import { PatientProfileComponent } from './components/patient-profile/patient-pr
 import { PatientDetailsComponent } from './components/patient-details/patient-details.component';
 import { AppointmentDetailsComponent } from './components/appointment-details/appointment-details.component';
 import { InvoiceDetailsComponent } from './components/invoice-details/invoice-details.component';
+import { AppointmentDetailsService } from './services/appointment-details.service';
+import { AuthenticationService } from './services/authentication.service';
+import { InvoiceService } from './services/invoice.service';
+import { UserService } from './services/user.service';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { AuthenticationGuard } from './guards/authentication.guard';
+import { NotificationModule } from './notification.module';
+import { NotificationService } from './services/notification.service';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
-  {path: 'patient/:patientId/:appointmentId/:invoiceId', component : InvoiceDetailsComponent},
-  {path: 'patient/:patientId/:appointmentId', component: AppointmentDetailsComponent},
-  {path: 'patient/:id', component: PatientProfileComponent},
-  {path: 'patients', component: PatientsComponent},
-  {path: 'dashboard', component: DashboardComponent},
-  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
-  {path: '**', redirectTo: '/dashboard', pathMatch: 'full'}
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'patient/:patientId/:appointmentId/:invoiceId', component : InvoiceDetailsComponent, canActivate: [AuthenticationGuard]},
+  {path: 'patient/:patientId/:appointmentId', component: AppointmentDetailsComponent, canActivate: [AuthenticationGuard]},
+  {path: 'patient/:id', component: PatientProfileComponent, canActivate: [AuthenticationGuard]},
+  {path: 'patients', component: PatientsComponent, canActivate: [AuthenticationGuard]},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthenticationGuard]},
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
+  {path: '**', redirectTo: 'login', pathMatch: 'full'}
 ]; 
 
 
@@ -42,16 +54,28 @@ const routes: Routes = [
     PatientProfileComponent,
     PatientDetailsComponent,
     AppointmentDetailsComponent,
-    InvoiceDetailsComponent
+    InvoiceDetailsComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule, 
+    NotificationModule
   ],
-  providers: [PatientService],
+  providers: [
+    AuthenticationGuard,
+    PatientService,
+    AppointmentDetailsService,
+    AuthenticationService,
+    InvoiceService,
+    UserService,
+    NotificationService,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
