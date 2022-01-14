@@ -268,7 +268,7 @@ export class UserComponent implements OnInit {
   }
 
   private getUserRole(): string {
-    return this.authenticationService.getUserFromLocalCache().role;
+    return this.authenticationService.getUserFromLocalCache().roles;
   }
 
   private clickButton(buttonId: string): void {

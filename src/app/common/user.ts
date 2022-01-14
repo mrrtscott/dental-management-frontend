@@ -14,7 +14,7 @@ export class User {
     authorities: [];
     isActive: boolean;
     isNotLocked: boolean;
-    role: string;
+    roles: string;
 
     constructor(){
         this.firstName = '';
@@ -24,7 +24,7 @@ export class User {
         this.email = '';
         this.isActive = false
         this.isNotLocked = false;
-        this.role = '';
+        this.roles = '';
         this.authorities = []
     }
 
