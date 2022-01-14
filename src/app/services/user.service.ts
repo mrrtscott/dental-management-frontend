@@ -35,15 +35,15 @@ export class UserService {
     return this.httpClient.post<User>(`${this.host}/user/update`, formData, {reportProgress: true, observe: 'events'})
   }
 
-  public deleteUser(userId: number): Observable<CustomHttpResponse | HttpErrorResponse>{
-    return this.httpClient.delete<CustomHttpResponse>(`${this.host}/user/delete/${userId}`)
+  public deleteUser(username: string): Observable<CustomHttpResponse>{
+    return this.httpClient.delete<CustomHttpResponse>(`${this.host}/user/delete/${username}`)
   }
 
-  public addusersToLocalCache(users: User[]): void{
+  public addUsersToLocalCache(users: User[]): void{
     localStorage.setItem('users', JSON.stringify(users))
   }
 
-  public getusersToLocalCache(users: User[]): void{
+  public getUsersFromLocalCache(): User[]{
     if(localStorage.getItem('users')){
       return JSON.parse(localStorage.getItem('users'));
     }
@@ -60,8 +60,8 @@ export class UserService {
     formData.append('email', user.email);
     formData.append('role', user.role);
     formData.append('profileImage', profileImage);
-    formData.append('isActive', JSON.stringify(user.active));
-    formData.append('isNonLocked', JSON.stringify(user.notLocked));
+    formData.append('isActive', JSON.stringify(user.isActive));
+    formData.append('isNonLocked', JSON.stringify(user.isNotLocked));
     
 
     return formData;

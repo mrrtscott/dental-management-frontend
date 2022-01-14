@@ -12,8 +12,8 @@ export class User {
     lastLoginDateDisplay: Date;
     joinDate: Date;
     authorities: [];
-    active: boolean;
-    notLocked: boolean;
+    isActive: boolean;
+    isNotLocked: boolean;
     role: string;
 
     constructor(){
@@ -22,8 +22,8 @@ export class User {
         this.lastName = '';
         this.username = '';
         this.email = '';
-        this.active = false
-        this.notLocked = false;
+        this.isActive = false
+        this.isNotLocked = false;
         this.role = '';
         this.authorities = []
     }

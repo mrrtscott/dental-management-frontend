@@ -27,6 +27,7 @@ import { NotificationModule } from './notification.module';
 import { NotificationService } from './services/notification.service';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { UserComponent } from './components/user/user.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -36,6 +37,7 @@ const routes: Routes = [
   {path: 'patient/:id', component: PatientProfileComponent, canActivate: [AuthenticationGuard]},
   {path: 'patients', component: PatientsComponent, canActivate: [AuthenticationGuard]},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthenticationGuard]},
+  {path: 'user-management', component: UserComponent, canActivate: [AuthenticationGuard]},
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: '**', redirectTo: 'login', pathMatch: 'full'}
 ]; 
@@ -56,7 +58,8 @@ const routes: Routes = [
     AppointmentDetailsComponent,
     InvoiceDetailsComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    UserComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
